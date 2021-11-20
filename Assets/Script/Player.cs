@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
 
+    public int fuerzaExtra = 0;
+    
     public float SpeedMove = 5.0f;
     public float SpeedRota = 250.0f;
 
@@ -22,6 +24,11 @@ public class Player : MonoBehaviour
 
     public Animator anim;
     public float x, y;
+
+    public int contador;
+    public Text puntuacion;
+
+    private Vector3 myVector3;
     
     void Start()
     {
@@ -36,6 +43,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Awake()
+    {
+        //rb = GetComponent<Rigidbody>();
+        contador = 0;
+        puntuacion.text = " X " + contador;
+    }
 
     private void FixedUpdate()
     {
@@ -45,6 +58,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
 
@@ -53,16 +67,16 @@ public class Player : MonoBehaviour
 
         if (CanJump == true)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 anim.SetBool("Jump", true);
                 rb.AddForce(new Vector3(0, ForceJump, 0), ForceMode.Impulse);
                 IsJumping = true;                
             }
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.J))
             {
-
+                //transform.Traslate(new Vector3.forward * SpeedMove * Time.deltatime));
                 Debug.Log("gira");
             }
 
@@ -72,7 +86,7 @@ public class Player : MonoBehaviour
         {
             if (IsJumping == true)
             {
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     anim.SetBool("Jump", true);
                     rb.AddForce(new Vector3(0, ForceJump * 2, 0), ForceMode.Impulse);
@@ -91,7 +105,7 @@ public class Player : MonoBehaviour
 
         if (life <= 0)
         {
-            SceneManager.LoadScene("SceneLost");
+            SceneManager.LoadScene("Nivel1");
             Destroy(gameObject);
         }
         else if (life > maxLife)
@@ -116,6 +130,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider obj)
     {
+        if (obj.gameObject.tag == "Grajea")
+        {
+
+            contador = contador + 1;
+            puntuacion.text = " X " + contador;
+            Destroy(obj.gameObject);
+        }
+        
+        
         if (obj.gameObject.tag == "Life")
         {
 
@@ -127,6 +150,8 @@ public class Player : MonoBehaviour
 
     public void Fall()
     {
+        rb.AddForce(fuerzaExtra * Physics.gravity);
+        
         anim.SetBool("Tocosuelo", false);
         anim.SetBool("Jump", false);
     }

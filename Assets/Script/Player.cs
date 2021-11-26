@@ -126,6 +126,12 @@ public class Player : MonoBehaviour
             Debug.Log("Golpe de puas");
             ChangeLife(-1);
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Golpe de Enemigo");
+            ChangeLife(-1);
+        }
     }
 
     private void OnTriggerEnter(Collider obj)

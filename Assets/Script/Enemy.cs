@@ -1,72 +1,82 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 
 public class Enemy : MonoBehaviour
 {
-
     public NavMeshAgent agente;
     public Transform player;
-    public LayerMask Suelo, Qplayer;
+    private LayerMask Suelo, qPlayer;
 
-    // patron
-    public Vector3 Caminar;
-    bool Distancia;
-    public float Rango;
+    // patrol
+    public Vector3 caminar;
+    bool flgCamino;
+    public float rangoCaminar;
 
     //ataque
-   // public float TimeBetweenAttacks;
-    //bool alreadyAttacked;
+    //public float tiempoEntreAtaque;
+    //bool flgAtacado;
 
-    //estadisticas 
-    public float rangoVision, rangoAtaque;
-    public bool playerRangoVision, playerRangoAtaque;
+    //estados
+    public float rangovision, rangoAtaque;
+    public bool flgPlayerRangoVision, flgPlayerRangoAtaque;
 
 
-    private void awake()
+    private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agente = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //Rango de ataque 
-        playerRangoVision = Physics.CheckSphere(transform.position, rangoVision, Qplayer);
-        playerRangoAtaque = Physics.CheckSphere(transform.position, rangoAtaque, Qplayer);
+        //revisar rangos
+        qPlayer = LayerMask.GetMask("Player");
+        flgPlayerRangoVision = Physics.CheckSphere(transform.position, rangovision, qPlayer);
+        flgPlayerRangoAtaque = Physics.CheckSphere(transform.position, rangoAtaque, qPlayer);
 
-        if (!playerRangoVision && !playerRangoAtaque) Patron();
-        if (playerRangoVision && !playerRangoAtaque) Persecucion();
-        //if (playerRangoVision && playerRangoAtaque) Ataque();
+        if (!flgPlayerRangoVision && !flgPlayerRangoAtaque) Patrullar();
+        if (flgPlayerRangoVision && !flgPlayerRangoAtaque) Persecucion();
+        if (flgPlayerRangoVision && flgPlayerRangoAtaque) Ataque();
     }
 
-    private void Patron()
+    private void Patrullar()
     {
-        if (!Distancia) CaminataBusqueda();
+        if (!flgCamino) BuscarCamino();
+
+        if (flgCamino) agente.SetDestination(caminar);
+
+        Vector3 distancia = transform.position - caminar;
+
+        //punto de caminita alcanzado
+        if (distancia.magnitude < 1f)
+            flgCamino = false;
     }
 
-    private void CaminataBusqueda()
+    private void BuscarCamino()
     {
-        float randomZ = Random.Range(-Rango, Rango);
-        float randomX = Random.Range(-Rango, Rango);
+        float randomZ = Random.Range(-rangoCaminar, rangoCaminar);
+        float randomX = Random.Range(-rangoCaminar, rangoCaminar);
 
-        Caminar = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        caminar = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(Caminar, -transform.up, 2f, Suelo))
-            Distancia = true;
+        Suelo = LayerMask.GetMask("Suelo");
+        if (Physics.Raycast(caminar, -transform.up, 2f, Suelo))
+        {
+            flgCamino = true;
+        }
     }
 
     private void Persecucion()
     {
         agente.SetDestination(player.position);
+        agente.SetDestination(new Vector3(player.position.x, player.position.y, player.position.z));
     }
 
     private void Ataque()
     {
-
+        Debug.Log("Ataca el enemigo");
     }
 
     // Start is called before the first frame update

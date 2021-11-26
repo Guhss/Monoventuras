@@ -7,14 +7,15 @@ TagManager:
   - Spikes
   - Life
   - Grajea
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Suelo
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

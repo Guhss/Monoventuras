@@ -23,7 +23,7 @@ public class Pausa : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            audioSource.PlayOneShot(pause_sfx);
+            //audioSource.PlayOneShot(pause_sfx);
             active = !active;
             pause.enabled = active;
             pauseContainer.SetActive(active);

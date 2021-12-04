@@ -160,6 +160,7 @@ public class Player : MonoBehaviour
         {
 
             contador = contador + 1;
+            //SIEMPRE asociar o si no se borra el script en Awake
             puntuacion.text = " X " + contador;
             Destroy(obj.gameObject);
         }

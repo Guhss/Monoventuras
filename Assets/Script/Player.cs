@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     {
         CanJump = false;
         //IsJumping = false;
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
 
         GameObject lifeBarGameObject = GameObject.Find("LifeBar");
         if (lifeBarGameObject)

@@ -8,6 +8,8 @@ TagManager:
   - Life
   - Grajea
   - Enemy
+  - Suelo
+  - Salida
   layers:
   - Default
   - TransparentFX

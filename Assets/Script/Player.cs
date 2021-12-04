@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class Player : MonoBehaviour
 {
 
@@ -29,18 +30,26 @@ public class Player : MonoBehaviour
     public Text puntuacion;
 
     private Vector3 myVector3;
+
+    //public GameObject Suelo;
+
+    public bool atack;
+    public bool impuls;
+    public float impulsG = 10f;
     
     void Start()
     {
         CanJump = false;
-        IsJumping = false;
-        //anim = GetComponent<Animator>();
+        //IsJumping = false;
+        anim = GetComponent<Animator>();
 
-        GameObject lifeBarGameobject = GameObject.Find("LifeBar");
-        if (lifeBarGameobject)
+        GameObject lifeBarGameObject = GameObject.Find("LifeBar");
+        if (lifeBarGameObject)
         {
-            lifeBar = lifeBarGameobject.GetComponent<Image>();
+            lifeBar = lifeBarGameObject.GetComponent<Image>();
         }
+
+        //Suelo = GameObject.FindObjectWithTag("Suelo"); 
     }
 
     public void Awake()
@@ -52,8 +61,16 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Rotate(0, x * Time.deltaTime * SpeedRota, 0);
-        transform.Translate(0, 0, y * Time.deltaTime * SpeedMove);
+        if(atack == false)
+        {
+            transform.Rotate(0, x * Time.deltaTime * SpeedRota, 0);
+            transform.Translate(0, 0, y * Time.deltaTime * SpeedMove);
+        }
+
+        if (impuls)
+        {
+            rb.velocity = transform.forward * impulsG;
+        }
     }
 
     void Update()
@@ -62,38 +79,38 @@ public class Player : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
 
+        if (Input.GetKeyDown(KeyCode.J) && CanJump && !atack)
+        {
+            //transform.Traslate(new Vector3.forward * SpeedMove * Time.deltatime));
+            //Debug.Log("gira");
+            anim.SetTrigger("Golpeo");
+            atack = true;
+        }
+
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
 
+       
+
         if (CanJump == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                anim.SetBool("Jump", true);
-                rb.AddForce(new Vector3(0, ForceJump, 0), ForceMode.Impulse);
-                IsJumping = true;                
-            }
-
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                //transform.Traslate(new Vector3.forward * SpeedMove * Time.deltatime));
-                Debug.Log("gira");
-            }
-
-            anim.SetBool("Tocosuelo", true);
-        }
-        else
-        {
-            if (IsJumping == true)
+            if (!atack)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     anim.SetBool("Jump", true);
-                    rb.AddForce(new Vector3(0, ForceJump * 2, 0), ForceMode.Impulse);
-                    IsJumping = false;
+                    rb.AddForce(new Vector3(0, ForceJump, 0), ForceMode.Impulse);
+                    //IsJumping = true;
                 }
-                anim.SetBool("Tocosuelo", true);
             }
+            
+
+            anim.SetBool("Tocosuelo", true);
+        }
+
+        else
+        {
+           
             Fall();
         }
     }
@@ -105,7 +122,7 @@ public class Player : MonoBehaviour
 
         if (life <= 0)
         {
-            SceneManager.LoadScene("Nivel1");
+            SceneManager.LoadScene("SceneLost");
             Destroy(gameObject);
         }
         else if (life > maxLife)
@@ -132,6 +149,9 @@ public class Player : MonoBehaviour
             Debug.Log("Golpe de Enemigo");
             ChangeLife(-1);
         }
+
+
+        
     }
 
     private void OnTriggerEnter(Collider obj)
@@ -144,7 +164,11 @@ public class Player : MonoBehaviour
             Destroy(obj.gameObject);
         }
         
-        
+        if (obj.gameObject.CompareTag("Salida"))
+        {
+            SceneManager.LoadScene("Nivel1");
+        }
+
         if (obj.gameObject.tag == "Life")
         {
 
@@ -162,4 +186,19 @@ public class Player : MonoBehaviour
         anim.SetBool("Jump", false);
     }
     
+    public void dejeGolpear()
+    {
+        atack = false;
+        
+    }
+
+    public void inpuls()
+    {
+        impuls = true;
+    }
+
+    public void dejoAvanzar()
+    {
+        impuls = false;
+    }
 }

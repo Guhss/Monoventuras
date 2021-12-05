@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
         {
             lifeBar = lifeBarGameobject.GetComponent<Image>();
         }
+
+        maxLife = life;
+        ChangeLife(0);
+
     }
 
     public void Awake()
@@ -103,12 +107,7 @@ public class Player : MonoBehaviour
 
         life += value;
 
-        if (life <= 0)
-        {
-            SceneManager.LoadScene("Nivel1");
-            Destroy(gameObject);
-        }
-        else if (life > maxLife)
+        if (life > maxLife)
         {
             life = maxLife;
         }
@@ -116,6 +115,12 @@ public class Player : MonoBehaviour
         if (lifeBar)
         {
             lifeBar.fillAmount = life / maxLife;
+        }
+
+        if (life <= 0)
+        {
+            SceneManager.LoadScene("SceneLost");
+            Destroy(gameObject);
         }
     }
 
@@ -131,6 +136,12 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Golpe de Enemigo");
             ChangeLife(-1);
+        }
+
+        if (collision.gameObject.CompareTag("Danger Zone"))
+        {
+            Debug.Log("Muerte por altura");
+            ChangeLife(-5);
         }
     }
 

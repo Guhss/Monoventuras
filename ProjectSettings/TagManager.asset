@@ -8,6 +8,7 @@ TagManager:
   - Life
   - Grajea
   - Enemy
+  - Danger Zone
   layers:
   - Default
   - TransparentFX

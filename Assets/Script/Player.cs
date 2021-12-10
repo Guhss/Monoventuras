@@ -126,15 +126,7 @@ public class Player : MonoBehaviour
 
         life += value;
 
-
         if (life > maxLife)
-
-        if (life <= 0)
-        {
-            SceneManager.LoadScene("SceneLost");
-            Destroy(gameObject);
-        }
-        else if (life > maxLife)
 
         {
             life = maxLife;

@@ -8,8 +8,12 @@ TagManager:
   - Life
   - Grajea
   - Enemy
+<<<<<<< HEAD
+  - Danger Zone
+=======
   - Suelo
   - Salida
+>>>>>>> d9e50c17148ce34f611aed110e32496277a180fd
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,10 @@ EditorBuildSettings:
     guid: 050579dfe710d6749a23d87c6e360a8b
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
-    guid: 67c1aea5e60f2a146b754f62a28796d2
+    guid: 07842d320b1279d47b6ee5b0e6298411
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/SceneLost.unity
     guid: 739bd64150dfe0d488340592dae75c3d

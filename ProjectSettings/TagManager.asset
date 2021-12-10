@@ -3,25 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Spikes
-  - Life
-  - Grajea
-  - Enemy
-<<<<<<< HEAD
-  - Danger Zone
-=======
-  - Suelo
-  - Salida
->>>>>>> d9e50c17148ce34f611aed110e32496277a180fd
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Suelo
+  - 
   - Water
   - UI
-  - Player
+  - 
   - 
   - 
   - 

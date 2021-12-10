@@ -49,13 +49,13 @@ public class Player : MonoBehaviour
             lifeBar = lifeBarGameObject.GetComponent<Image>();
         }
 
-<<<<<<< HEAD
+
         maxLife = life;
         ChangeLife(0);
 
-=======
+
         //Suelo = GameObject.FindObjectWithTag("Suelo"); 
->>>>>>> d9e50c17148ce34f611aed110e32496277a180fd
+
     }
 
     public void Awake()
@@ -126,16 +126,16 @@ public class Player : MonoBehaviour
 
         life += value;
 
-<<<<<<< HEAD
+
         if (life > maxLife)
-=======
+
         if (life <= 0)
         {
             SceneManager.LoadScene("SceneLost");
             Destroy(gameObject);
         }
         else if (life > maxLife)
->>>>>>> d9e50c17148ce34f611aed110e32496277a180fd
+
         {
             life = maxLife;
         }
@@ -166,16 +166,13 @@ public class Player : MonoBehaviour
             ChangeLife(-1);
         }
 
-<<<<<<< HEAD
+
         if (collision.gameObject.CompareTag("Danger Zone"))
         {
             Debug.Log("Muerte por altura");
             ChangeLife(-5);
         }
-=======
 
-        
->>>>>>> d9e50c17148ce34f611aed110e32496277a180fd
     }
 
     private void OnTriggerEnter(Collider obj)

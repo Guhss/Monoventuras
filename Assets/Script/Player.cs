@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     //public GameObject Suelo;
 
     public bool atack;
-    public bool impuls;
+    public bool Walk;
     public float impulsG = 10f;
     
     void Start()
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             transform.Translate(0, 0, y * Time.deltaTime * SpeedMove);
         }
 
-        if (impuls)
+        if (Walk)
         {
             rb.velocity = transform.forward * impulsG;
         }
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J) && CanJump && !atack)
         {
-            //transform.Traslate(new Vector3.forward * SpeedMove * Time.deltatime));
+            //transform.Traslate(new Vector3.forward * SpeedMove * Time.deltaTime));
             //Debug.Log("gira");
             anim.SetTrigger("Golpeo");
             atack = true;
@@ -195,11 +195,11 @@ public class Player : MonoBehaviour
 
     public void inpuls()
     {
-        impuls = true;
+        Walk = true;
     }
 
     public void dejoAvanzar()
     {
-        impuls = false;
+        Walk = false;
     }
 }

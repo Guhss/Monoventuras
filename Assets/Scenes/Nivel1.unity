@@ -10083,8 +10083,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6127364384252056717, guid: 87689e0e79748664d8d2169f480e0b38, type: 3}
+      propertyPath: ForceJump
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127364384252056717, guid: 87689e0e79748664d8d2169f480e0b38, type: 3}
       propertyPath: IsJumping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127364384252056717, guid: 87689e0e79748664d8d2169f480e0b38, type: 3}
+      propertyPath: SpeedMove
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6127364384252056717, guid: 87689e0e79748664d8d2169f480e0b38, type: 3}
       propertyPath: puntuacion

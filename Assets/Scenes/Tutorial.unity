@@ -8872,6 +8872,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1813001731}
     - target: {fileID: 6127364384252056717, guid: 87689e0e79748664d8d2169f480e0b38, type: 3}
+      propertyPath: ForceJump
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127364384252056717, guid: 87689e0e79748664d8d2169f480e0b38, type: 3}
       propertyPath: puntuacion
       value: 
       objectReference: {fileID: 286874381}

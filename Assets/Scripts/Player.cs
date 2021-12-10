@@ -33,9 +33,9 @@ public class Player : MonoBehaviour
 
     //public GameObject Suelo;
 
-    public bool atack;
-    public bool Walk;
-    public float impulsG = 10f;
+    //public bool atack;
+    //public bool Walk;
+    //public float impulsG = 10f;
     
     void Start()
     {
@@ -67,16 +67,13 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(atack == false)
-        {
-            transform.Rotate(0, x * Time.deltaTime * SpeedRota, 0);
-            transform.Translate(0, 0, y * Time.deltaTime * SpeedMove);
-        }
+        
+        
+         transform.Rotate(0, x * Time.deltaTime * SpeedRota, 0);
+         transform.Translate(0, 0, y * Time.deltaTime * SpeedMove);
+        
 
-        if (Walk)
-        {
-            rb.velocity = transform.forward * impulsG;
-        }
+       
     }
 
     void Update()
@@ -85,12 +82,12 @@ public class Player : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.J) && CanJump && !atack)
+       //if (Input.GetKeyDown(KeyCode.J) && CanJump && !atack)
         {
             //transform.Traslate(new Vector3.forward * SpeedMove * Time.deltaTime));
             //Debug.Log("gira");
-            anim.SetTrigger("Golpeo");
-            atack = true;
+            //anim.SetTrigger("Golpeo");
+            //atack = true;
         }
 
         anim.SetFloat("VelX", x);
@@ -100,15 +97,15 @@ public class Player : MonoBehaviour
 
         if (CanJump == true)
         {
-            if (!atack)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    anim.SetBool("Jump", true);
-                    rb.AddForce(new Vector3(0, ForceJump, 0), ForceMode.Impulse);
-                    //IsJumping = true;
-                }
-            }
+            
+           
+          if (Input.GetKeyDown(KeyCode.Space))
+           {
+                anim.SetBool("Jump", true);
+                rb.AddForce(new Vector3(0, ForceJump, 0), ForceMode.Impulse);
+                //IsJumping = true;
+           }
+          
             
 
             anim.SetBool("Tocosuelo", true);
@@ -200,19 +197,5 @@ public class Player : MonoBehaviour
         anim.SetBool("Jump", false);
     }
     
-    public void dejeGolpear()
-    {
-        atack = false;
-        
-    }
-
-    public void inpuls()
-    {
-        Walk = true;
-    }
-
-    public void dejoAvanzar()
-    {
-        Walk = false;
-    }
+    
 }

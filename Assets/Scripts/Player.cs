@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public float SpeedMove = 5.0f;
     public float SpeedRota = 250.0f;
 
+    
+    public bool boostedSpeed;
+    public float speedTimer;
+
     public Rigidbody rb;
     public float ForceJump = 4f;
     public bool CanJump;
@@ -39,6 +43,10 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+
+        speedTimer = 0;
+        boostedSpeed = false;
+        
         CanJump = false;
         //IsJumping = false;
         //anim = GetComponent<Animator>();
@@ -93,7 +101,16 @@ public class Player : MonoBehaviour
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
 
-       
+        if (boostedSpeed)
+        {
+            speedTimer += Time.deltaTime;
+            if(speedTimer >= 3)
+            {
+                SpeedMove = 5;
+                speedTimer = 0;
+                boostedSpeed = false;
+            }
+        }
 
         if (CanJump == true)
         {
@@ -186,8 +203,18 @@ public class Player : MonoBehaviour
           ChangeLife(obj.gameObject.GetComponent<Life>().life);
           Destroy(obj.gameObject);
         }
+
+        if (obj.gameObject.tag == "SpeedBoost")
+        {
+
+            boostedSpeed = true;
+            SpeedMove = 10;
+            Destroy(obj.gameObject);
+        }
+
     }
 
+    
 
     public void Fall()
     {

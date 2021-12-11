@@ -5,7 +5,7 @@ using UnityEngine;
 public class Feet : MonoBehaviour
 {
 
-    public Player Player; 
+    public PlayerModel model; 
 
     void Start()
     {
@@ -20,11 +20,11 @@ public class Feet : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Player.CanJump = true;
+        model.CanJump = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Player.CanJump = false;
+        model.CanJump = false;
     }
 }

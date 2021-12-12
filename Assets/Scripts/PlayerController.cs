@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
         model.x = Input.GetAxis("Horizontal");
         model.y = Input.GetAxis("Vertical");
 
-        model.anim.SetFloat("VelX", model.x);
-        model.anim.SetFloat("VelY", model.y);
+        //model.anim.SetFloat("VelX", model.x);
+        //model.anim.SetFloat("VelY", model.y);
 
         if (model.boostedSpeed)
         {
@@ -50,10 +50,10 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                model.anim.SetBool("Jump", true);
+                //model.anim.SetBool("Jump", true);
                 model.rb.AddForce(new Vector3(0, model.ForceJump, 0), ForceMode.Impulse);
             }
-            model.anim.SetBool("Tocosuelo", true);
+            //model.anim.SetBool("Tocosuelo", true);
         }
 
         else
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     public void Fall()
     {
         model.rb.AddForce(model.fuerzaExtra * Physics.gravity);
-        model.anim.SetBool("Tocosuelo", false);
-        model.anim.SetBool("Jump", false);
+        //model.anim.SetBool("Tocosuelo", false);
+        //model.anim.SetBool("Jump", false);
     }
 }

@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 1766a1e3309cd57458b34ace43eef22b
+guid: d449810f41100b24480a4be8831d7fb0
 ModelImporter:
   serializedVersion: 21100
-  internalIDToNameTable:
-  - first:
-      74: -203655887218126122
-    second: mixamo.com
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -18,7 +15,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -26,7 +24,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -75,12 +73,22 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - 3061f9ca1c6cb2e4cab7c0e8027e04f2
+  - 46d37aaf83403934098e395736a2cd0c
+  - 76ad892f46155a64aa824f44dbdc37c3
+  - 5f40dff5e236f784b9b14f989bb7fb1f
+  - 4ec66935dee07e1478bb6ceb76275fe5
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: MonoColoreadoModeloFBX(Clone)
+      parentName: 
+      position: {x: -0, y: 0.13143566, z: -0.26524663}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -95,9 +103,9 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
